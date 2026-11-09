@@ -27,7 +27,7 @@ the code, tests, configuration and docs; the humans prompt, review, decide and r
 | --- | --- | --- | --- |
 | 1 | **Minimalist** | One strong brief, then iterate. No extra artifacts. | Drift, weak validation |
 | 2 | **Skills-based** | A reusable skill (your own, or from framework **b**) drives each phase. | Skill overhead |
-| 3 | **Multi-agent** | A planner agent defines boundaries and file ownership; implementer and reviewer agents hand off explicitly. | Coordination cost |
+| 3 | **Multi-agent (most agentic)** | Separate agents own separate roles with no shared context: a planner agent defines boundaries and file ownership, implementer agents build, a reviewer agent checks independently - they hand off explicitly instead of one agent doing everything. | Coordination cost |
 | 4 | **Spec-driven** | Write a spec and task list first, then implement task by task against it. | Over-specifying |
 | 5 | **Hybrid** | A deliberate mix, named up front (e.g. spec for the core, minimalist for the UI). | Unattributable results |
 | 6 | **Custom** | The team's own method, written down in five lines before the first line of code. | Vague process |
@@ -40,7 +40,8 @@ Test-driven work is Q3 option 2. Context engineering is framework **f** (GSD).
 - **B Supervised autonomous (recommended):** proceed inside the approved plan. Stop at the method's
   checkpoints, when validation fails twice in a row, or when an unplanned decision is needed, and before
   installing anything.
-- **C Maximum:** plan, build, test and review alone. Stop only for blockers, destructive actions, scope
+- **C Maximum (full automation):** plan, build, test and review alone, with no step-by-step approval -
+  the closest thing here to a fully autonomous agent. Stop only for blockers, destructive actions, scope
   conflicts with the team's own brief, or critical decisions. Post a status line every ~10 minutes.
 
 Never, in any mode: ask the human to write code, or skip validation reporting.
