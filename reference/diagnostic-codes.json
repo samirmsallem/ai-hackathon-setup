@@ -1,0 +1,32 @@
+{
+  "P0A80": {
+    "description": "Hybrid/EV battery pack degraded",
+    "system": "Battery",
+    "severity": "WARNING",
+    "recommendedAction": "Schedule battery health inspection; review cell balancing data."
+  },
+  "C0035": {
+    "description": "Left front wheel speed sensor circuit fault",
+    "system": "Chassis",
+    "severity": "WARNING",
+    "recommendedAction": "Inspect sensor and wiring; check plausibility against other wheel speeds."
+  },
+  "B0100": {
+    "description": "Front impact sensor circuit fault",
+    "system": "Safety",
+    "severity": "WARNING",
+    "recommendedAction": "Inspect restraint system sensor harness."
+  },
+  "P0AFA": {
+    "description": "Battery system voltage low",
+    "system": "Battery",
+    "severity": "CRITICAL",
+    "recommendedAction": "Stop charging/discharging operations and inspect the high-voltage system."
+  },
+  "U0100": {
+    "description": "Lost communication with powertrain controller",
+    "system": "Network",
+    "severity": "CRITICAL",
+    "recommendedAction": "Restrict vehicle operation; inspect CAN/Ethernet backbone and controller power supply."
+  }
+}

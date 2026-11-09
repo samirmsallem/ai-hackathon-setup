@@ -1,0 +1,17 @@
+{
+  "id": "offline-vehicle",
+  "name": "Lost vehicle connectivity",
+  "description": "Vehicle reports OFFLINE.",
+  "evaluationTime": "2026-03-10T10:00:00Z",
+  "telemetry": {
+    "vehicleId": "SDV-1007",
+    "speedKph": 62,
+    "batteryStateOfCharge": 74,
+    "batteryTemperatureC": 31,
+    "vehicleMode": "DRIVING",
+    "softwareVersion": "2.5.1",
+    "diagnosticCodes": [],
+    "connectivityStatus": "OFFLINE",
+    "timestamp": "2026-03-10T09:59:50Z"
+  }
+}

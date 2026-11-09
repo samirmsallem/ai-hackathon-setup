@@ -1,0 +1,19 @@
+{
+  "id": "critical-combined",
+  "name": "Critical combined scenario",
+  "description": "Critical SoC and temperature, offline, critical DTC, outdated software.",
+  "evaluationTime": "2026-03-10T10:00:00Z",
+  "telemetry": {
+    "vehicleId": "SDV-1012",
+    "speedKph": 0,
+    "batteryStateOfCharge": 5,
+    "batteryTemperatureC": 74,
+    "vehicleMode": "PARKED",
+    "softwareVersion": "2.1.0",
+    "diagnosticCodes": [
+      "U0100"
+    ],
+    "connectivityStatus": "OFFLINE",
+    "timestamp": "2026-03-10T09:59:50Z"
+  }
+}

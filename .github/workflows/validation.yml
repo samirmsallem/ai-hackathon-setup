@@ -1,0 +1,16 @@
+name: validation
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run test:harness
+      # Acceptance tests are red on the unmodified starter by design; they gate team branches only.
+      - run: npm run test:acceptance
+        continue-on-error: ${{ github.ref == 'refs/heads/main' }}

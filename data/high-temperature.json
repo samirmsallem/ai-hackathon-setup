@@ -1,0 +1,17 @@
+{
+  "id": "high-temperature",
+  "name": "High battery temperature",
+  "description": "Battery temperature above 55 C.",
+  "evaluationTime": "2026-03-10T10:00:00Z",
+  "telemetry": {
+    "vehicleId": "SDV-1003",
+    "speedKph": 62,
+    "batteryStateOfCharge": 74,
+    "batteryTemperatureC": 62,
+    "vehicleMode": "DRIVING",
+    "softwareVersion": "2.5.1",
+    "diagnosticCodes": [],
+    "connectivityStatus": "ONLINE",
+    "timestamp": "2026-03-10T09:59:50Z"
+  }
+}

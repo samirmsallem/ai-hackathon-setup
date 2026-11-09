@@ -1,0 +1,100 @@
+# Framework catalog. The /hackathon command derives Question 2 from this file.
+# status: "confirmed" = install command was checked against upstream docs when this repo was authored.
+#         "verify"    = command is from the author's knowledge; the facilitator MUST run the pre-event check
+#                       (see frameworks/README.md). If it fails at the event, the team falls back to native-tools-only.
+# Field "fit" lists methods (ids from methods/) that combine well. "timeCost" = typical setup minutes.
+frameworks:
+  - id: native-tools-only
+    name: Native tool capabilities only
+    summary: Only Claude Code or GitHub Copilot built-ins plus this repository's own commands, agents and skills.
+    tools: [claude-code, github-copilot]
+    install: { claude-code: none, github-copilot: none }
+    status: confirmed
+    timeCost: 0
+    fit: [minimalist, skills-based, multi-agent, spec-driven, test-driven, context-engineered, hybrid, custom]
+    needs: []
+    doc: frameworks/native-tools-only.md
+  - id: matt-pocock-skills
+    name: Matt Pocock Skills
+    summary: Small composable engineering skills (grilling for alignment, TDD, diagnose, triage, to-prd, to-issues).
+    tools: [claude-code, github-copilot]
+    install:
+      claude-code: "npx skills@latest add mattpocock/skills  (then run /setup-matt-pocock-skills)"
+      github-copilot: "VS Code: 'Chat: Install Plugin From Source' -> https://github.com/mattpocock/skills  (or npx skills@latest add mattpocock/skills -a <agent>)"
+    status: confirmed
+    timeCost: 5
+    fit: [skills-based, test-driven, context-engineered, hybrid, minimalist]
+    needs: [node]
+    doc: frameworks/matt-pocock-skills.md
+  - id: superpowers
+    name: Superpowers
+    summary: Opinionated workflow of brainstorming, planning, subagent-driven development, TDD and review skills.
+    tools: [claude-code, github-copilot]
+    install:
+      claude-code: "/plugin marketplace add obra/superpowers-marketplace  then  /plugin install superpowers@superpowers-marketplace"
+      github-copilot: "Follow the obra/superpowers README for Copilot support; if unavailable use native-tools-only"
+    status: verify
+    timeCost: 5
+    fit: [multi-agent, test-driven, skills-based, hybrid]
+    needs: [git]
+    doc: frameworks/superpowers.md
+  - id: bmad-method
+    name: BMAD Method
+    summary: Agile-persona workflow (analyst, PM, architect, scrum master, dev, QA) with PRD and story files.
+    tools: [claude-code, github-copilot]
+    install:
+      claude-code: "npx bmad-method install"
+      github-copilot: "npx bmad-method install  (select GitHub Copilot as IDE)"
+    status: verify
+    timeCost: 10
+    fit: [multi-agent, spec-driven, hybrid]
+    needs: [node]
+    doc: frameworks/bmad-method.md
+    warning: Heavy for a 120-minute challenge. Only choose it with the reduced path described in the doc.
+  - id: github-spec-kit
+    name: GitHub Spec Kit
+    summary: Spec-driven development with constitution, specify, plan, tasks and implement commands.
+    tools: [claude-code, github-copilot]
+    install:
+      claude-code: "uvx --from git+https://github.com/github/spec-kit.git specify init --here --ai claude"
+      github-copilot: "uvx --from git+https://github.com/github/spec-kit.git specify init --here --ai copilot"
+    status: verify
+    timeCost: 8
+    fit: [spec-driven, hybrid, context-engineered]
+    needs: [uv, python]
+    doc: frameworks/github-spec-kit.md
+  - id: openspec
+    name: OpenSpec
+    summary: Lightweight spec-driven change proposals (propose, apply, archive) stored in the repo.
+    tools: [claude-code, github-copilot]
+    install:
+      claude-code: "npm install -g @fission-ai/openspec@latest && openspec init"
+      github-copilot: "npm install -g @fission-ai/openspec@latest && openspec init  (select GitHub Copilot)"
+    status: verify
+    timeCost: 5
+    fit: [spec-driven, hybrid, context-engineered, minimalist]
+    needs: [node]
+    doc: frameworks/openspec.md
+  - id: gsd
+    name: GSD (Get Shit Done)
+    summary: Context-engineering workflow that splits work into phases with fresh-context executors and atomic commits.
+    tools: [claude-code, github-copilot]
+    install:
+      claude-code: "npx get-shit-done-cc@latest"
+      github-copilot: "npx get-shit-done-cc@latest  (select Copilot if offered, else use native-tools-only)"
+    status: verify
+    timeCost: 5
+    fit: [context-engineered, multi-agent, hybrid]
+    needs: [node]
+    doc: frameworks/gsd.md
+    note: Check upstream for the currently maintained package name; use the maintained equivalent if renamed.
+  - id: custom
+    name: Custom or another framework
+    summary: The team names its own framework; the agent checks compatibility with the chosen tool before installing.
+    tools: [claude-code, github-copilot]
+    install: { claude-code: "team provides", github-copilot: "team provides" }
+    status: verify
+    timeCost: 10
+    fit: [custom, hybrid]
+    needs: []
+    doc: frameworks/compatibility.md

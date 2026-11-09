@@ -1,0 +1,17 @@
+{
+  "id": "normal-vehicle",
+  "name": "Healthy vehicle",
+  "description": "All values nominal.",
+  "evaluationTime": "2026-03-10T10:00:00Z",
+  "telemetry": {
+    "vehicleId": "SDV-1001",
+    "speedKph": 62,
+    "batteryStateOfCharge": 74,
+    "batteryTemperatureC": 31,
+    "vehicleMode": "DRIVING",
+    "softwareVersion": "2.5.1",
+    "diagnosticCodes": [],
+    "connectivityStatus": "ONLINE",
+    "timestamp": "2026-03-10T09:59:50Z"
+  }
+}

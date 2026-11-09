@@ -1,0 +1,93 @@
+{
+  "_comment": "Deterministic expected results. findingCodes are sorted and may contain duplicates (one per DTC). Telemetry is evaluated at the scenario evaluationTime.",
+  "scenarios": {
+    "normal-vehicle": {
+      "status": "HEALTHY",
+      "dataQuality": "VALID",
+      "findingCodes": []
+    },
+    "low-battery": {
+      "status": "WARNING",
+      "dataQuality": "VALID",
+      "findingCodes": [
+        "BATTERY_LOW"
+      ]
+    },
+    "high-temperature": {
+      "status": "WARNING",
+      "dataQuality": "VALID",
+      "findingCodes": [
+        "BATTERY_TEMP_HIGH"
+      ]
+    },
+    "invalid-speed": {
+      "status": "WARNING",
+      "dataQuality": "SUSPECT",
+      "findingCodes": [
+        "SPEED_INVALID"
+      ]
+    },
+    "stale-telemetry": {
+      "status": "WARNING",
+      "dataQuality": "SUSPECT",
+      "findingCodes": [
+        "TELEMETRY_STALE"
+      ]
+    },
+    "future-timestamp": {
+      "status": "WARNING",
+      "dataQuality": "REJECTED",
+      "findingCodes": [
+        "TELEMETRY_FUTURE"
+      ]
+    },
+    "offline-vehicle": {
+      "status": "WARNING",
+      "dataQuality": "VALID",
+      "findingCodes": [
+        "CONNECTIVITY_OFFLINE"
+      ]
+    },
+    "diagnostic-code": {
+      "status": "WARNING",
+      "dataQuality": "VALID",
+      "findingCodes": [
+        "DTC_WARNING"
+      ]
+    },
+    "multiple-diagnostics": {
+      "status": "WARNING",
+      "dataQuality": "VALID",
+      "findingCodes": [
+        "DTC_UNKNOWN",
+        "DTC_WARNING",
+        "DTC_WARNING"
+      ]
+    },
+    "contradictory-data": {
+      "status": "WARNING",
+      "dataQuality": "SUSPECT",
+      "findingCodes": [
+        "CONTRADICTION_PARKED_WHILE_MOVING"
+      ]
+    },
+    "outdated-software": {
+      "status": "WARNING",
+      "dataQuality": "VALID",
+      "findingCodes": [
+        "SOFTWARE_OUTDATED"
+      ]
+    },
+    "critical-combined": {
+      "status": "CRITICAL",
+      "dataQuality": "VALID",
+      "findingCodes": [
+        "BATTERY_CRITICAL",
+        "BATTERY_TEMP_CRITICAL",
+        "CONNECTIVITY_OFFLINE",
+        "DTC_CRITICAL",
+        "SOFTWARE_OUTDATED"
+      ]
+    }
+  }
+}
