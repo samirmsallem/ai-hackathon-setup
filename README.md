@@ -26,31 +26,26 @@ you picked, and writes `.hackathon/session.json`. That's it; there is nothing to
 
 ## How the configuration question works
 
-**Mechanism:** in Claude Code, all four questions are asked in **one `AskUserQuestion` call** - a
-structured dialog where you click/select an option per question (or type a free-text "Other" answer for
-anything not shown). In GitHub Copilot, which has no such widget, the same four questions arrive as
-**one plain-text message**; you reply with a single combined line, e.g. `Method: 3 Autonomy: B
-Validation: 3 Framework: a`. Either way it's one round trip, not four separate prompts. Full option
-tables and defaults live in `HACKATHON.md`.
+You answer one question with four parts, in a single step - a click-through dialog in Claude Code, a
+one-line reply in Copilot. Here's what you're deciding:
 
-**What's being asked, and how to choose:**
+- **Method** - how much process you want before code gets written: none, a plan first, or split roles
+  (e.g. one agent plans, another builds, another reviews).
+- **Autonomy** - how closely you want to supervise: approve every step, approve at checkpoints
+  (recommended), or let it run and just check in on status.
+- **Validation** - how work gets checked: after it's done, test-first, continuously as you go, or by a
+  separate reviewer.
+- **Framework** - whether to install extra tooling to support your method, or skip it and use the tool as
+  is.
 
-| Question | Options | Pick based on |
-| --- | --- | --- |
-| **Q1 Method** | Minimalist, Skills-based, Multi-agent, Spec-driven, Hybrid, Custom | How much process your team wants before code: none (Minimalist), a plan+task list (Spec-driven), or role separation (Multi-agent) |
-| **Q2 Autonomy** | Guided, Supervised (recommended), Maximum | How much you want to approve as you go: every step, checkpoints only, or hands-off with periodic status |
-| **Q3 Validation** | Tests after, TDD, Continuous review, Independent reviewer | How rigorously you want work checked: after the fact, test-first, continuously, or by a separate reviewer |
-| **Q4 Framework** | Native tools (a), Matt Pocock Skills (b), Superpowers (c), OpenSpec (d), GitHub Spec Kit (e), GSD (f), BMAD (g) | Whether to install extra tooling at all, and if so, which one fits the method you picked in Q1 (`a` needs 0 min setup; `g` is high-risk for a short session) |
+Not sure? Answer `recommend` and get one suggested combination to confirm instead of four decisions.
 
 **What the team controls:**
 
-- **Partial or shorthand answers** - give only some answers and the rest fall back to the defaults in
-  `HACKATHON.md`, or answer `recommend` to get one proposed combination with a one-line reason and just
-  confirm it.
-- **One confirmation before anything changes** - the resulting setup is shown back to you in full before
-  the session is created or anything is installed.
-- **Resume vs. reconfigure** - if `.hackathon/session.json` already exists, you're asked whether to keep
-  it or start over; it's never silently overwritten.
-- **Branch creation and framework installs** - both are proposed, not assumed; you approve the branch
-  name and the install command (or skip the framework entirely with `a`).
-- **Re-asking later** - running `/reset` clears the session so `/hackathon` asks all four questions again.
+- **Answer partially** - skip any part and it's filled with a sensible default.
+- **Confirm before anything happens** - you see the full setup and approve it before the session is
+  created or anything is installed.
+- **Keep an existing session** - if one is already running, you choose to resume it instead of starting
+  over.
+- **Approve installs and branches separately** - nothing gets installed or created without asking first.
+- **Start over anytime** - `/reset` clears the session so `/hackathon` asks again.
