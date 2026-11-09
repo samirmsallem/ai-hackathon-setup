@@ -7,8 +7,7 @@ A team is **done** when all of the following are true:
 - [ ] Optional: `npm run test:e2e` passes.
 - [ ] `README.md` explains setup, usage, architecture and extension (written by the agent).
 - [ ] `tests/acceptance`, `reference/`, `data/` are unmodified.
-- [ ] `.hackathon/METHOD_LOG.md` and `INTERVENTION_LOG.md` are complete; `npm run hackathon:results` was run.
-- [ ] The presentation outline from `evaluation/presentation-template.md` is filled (agent-assisted).
+- [ ] `.hackathon/presentation.md` is filled for the 5-minute talk (agent-assisted, see `skills/prepare-demo`).
 - [ ] Work is committed on the team branch.
 
 If time runs out, "done" is reported honestly as a percentage of acceptance criteria met. Partial results with good learnings score well.

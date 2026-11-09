@@ -1,56 +1,83 @@
 # SDV Agentic Engineering Hackathon
 
-Two hours, 3-4 teams, one challenge: build the **SDV Vehicle Diagnostics Assistant** with AI agents (Claude Code or GitHub Copilot) using a method *you* choose, and learn which approach works best. The repository doubles as an interactive orchestrator: `/hackathon` configures your session and starts the workflow.
+Two hours, 3-4 teams, one challenge: build the **SDV Vehicle Diagnostics Assistant** with AI agents
+(Claude Code or GitHub Copilot) using an engineering method *you* choose, and learn which approach works
+best. One command drives the whole thing.
 
-## Quick start (participants)
+## Quick start
+
 ```bash
 git clone <repo> && cd sdv-hackathon
 git checkout -b team/<name>
 npm run setup          # checks Node >= 22.18, runs npm install
 ```
+
 Then open the repo in **Claude Code** (`claude`) or **VS Code with GitHub Copilot Chat (agent mode)** and run:
 
-| Tool | Command |
-| --- | --- |
-| Claude Code | `/hackathon` |
-| GitHub Copilot | `/hackathon` (prompt file). If it is not offered: type `/` and pick *hackathon*, or *Chat: Run Prompt...* from the command palette, or attach `.github/prompts/hackathon.prompt.md` and say "Follow this prompt." |
+```
+/hackathon
+```
 
-You will answer five questions (method, framework, autonomy, validation, intervention tracking) in about five minutes, confirm once, and the agent starts. Your job: **Prompt -> Review -> Decide -> Redirect**. You do not hand-write code, tests, config or docs.
+In Copilot, if `/hackathon` is not offered: *Chat: Run Prompt...* from the command palette, or attach
+`.github/prompts/hackathon.prompt.md` and say "Follow this prompt."
+
+`/hackathon` explains the task and the rules, asks for method, autonomy level, validation strategy and
+framework in **one** answer, installs what you picked, and starts building. Your job from there:
+**Prompt -> Review -> Decide -> Redirect**. You never hand-write code, tests, config or docs.
 
 ## What is in the repository
+
 | Path | Purpose |
 | --- | --- |
-| `HACKATHON.md` | Workflow, orchestrator protocol, rules |
+| `HACKATHON.md` | Workflow, methods, autonomy levels, validation strategies, orchestrator protocol |
+| `AGENTS.md` | Hard rules for every agent |
 | `challenge/` | Mission, requirements, acceptance criteria, constraints, domain, definition of done |
-| `methods/`, `frameworks/`, `skills/` | Engineering methods, optional frameworks (`catalog.yaml`), reusable skills |
-| `.claude/`, `.github/` | Commands/prompts and agents for each tool, Copilot instructions, CI |
+| `frameworks/catalog.yaml` | The seven optional frameworks and their install commands |
+| `skills/` | Six reusable skills (plan, generate tests, implement, review, validate, demo) |
+| `.claude/`, `.github/` | The `/hackathon` entrypoint and four agents per tool |
 | `data/`, `reference/` | 12 telemetry scenarios, rules, DTC catalog, expected results (immutable) |
-| `src/`, `tests/` | Starter skeleton (stub core, stub API, placeholder UI), fixed tests |
-| `evaluation/`, `templates/` | Scorecard, logs, presentation and document templates |
-| `scripts/` | setup, smoke test, validate, demo, session init, results |
-| `.hackathon/` | Your session files (git-ignored) |
+| `src/`, `tests/` | Starter skeleton (stub core, stub API, placeholder UI), fixed acceptance tests |
+| `.hackathon/` | Your session file (git-ignored) |
 
 ## Starting state (intentional)
-The repo ships a **buildable skeleton**: `npm run build` and `npm run lint` pass, `npm run test:harness` is green, but `npm run test:acceptance` and `npm run validate` are **red**. Turning them green with a validated, extendable prototype is the task.
+
+The repo ships a **buildable skeleton**: `npm run build` and `npm run lint` pass and
+`npm run test:harness` is green, but `npm run test:acceptance` and `npm run validate` are **red**.
+Turning them green with a validated, extendable prototype is the task.
 
 ## Commands
-`npm run setup | dev | build | test | lint | format | validate | demo | smoke`; `test:harness`, `test:acceptance`, `test:e2e`; `hackathon:init | results | reset`.
-`npm run dev` serves the API on :3001 and Vite on :5173. `npm run validate -- --quick` checks all 12 scenarios in about a second without installing anything. `npm run demo` prints scenario results and serves the built app.
-The reference rules are in `reference/validation-rules.json`; scenario expectations in `reference/expected-results.json`.
+
+`npm run setup | dev | build | test | lint | format | validate | demo`, plus `test:harness`,
+`test:acceptance`, `test:e2e`, `hackathon:init`.
+
+`npm run dev` serves the API on :3001 and Vite on :5173. `npm run validate -- --quick` checks all 12
+scenarios in about a second. `npm run demo` prints scenario results and serves the built app. Reference
+rules live in `reference/validation-rules.json`, scenario expectations in `reference/expected-results.json`.
 
 ## Facilitator guide
-1. **One week before:** on a networked machine run `npm install`, commit the generated `package-lock.json`, then `npm run smoke -- --full`. Install Playwright browsers once (`npx playwright install chromium`) if you want e2e. Verify each framework in `frameworks/catalog.yaml` with both tools and set `status: confirmed`.
-2. **Reference solution:** `maintainers/reference-solution/` passes all 12 scenarios (core + API; no UI). To prove the acceptance suite is satisfiable, temporarily copy it over `src/core/evaluate.ts` and `src/server/index.ts` and run `npm run validate`; revert afterwards. `npm run smoke` also checks the core.
-3. **Event branch:** `npm run event:prepare -- --yes` deletes `maintainers/` so agents cannot find it. Give teams the resulting branch.
-4. **Pre-event day:** `npm run smoke -- --full` on each event laptop; confirm Copilot prompt files are enabled and `/hackathon` appears; confirm network access for frameworks or pre-install them.
-5. **During:** teams run `/status`; keep time; collect `.hackathon/RESULTS.md`, METHOD_LOG and INTERVENTION_LOG from each team.
-6. **Scoring:** `evaluation/scorecard.md`. Compare methods on time to first green scenario, interventions, method changes - not on who finished first only.
+
+1. **One week before:** run `npm install` on a networked machine, commit the generated
+   `package-lock.json`, then `npm run validate`. Install Playwright browsers once
+   (`npx playwright install chromium`) if you want e2e. Verify each framework in
+   `frameworks/catalog.yaml` with both tools and set `status: confirmed`.
+2. **Reference solution:** `maintainers/reference-solution/` passes all 12 scenarios (core + API, no UI).
+   To prove the acceptance suite is satisfiable, temporarily copy it over `src/core/evaluate.ts` and
+   `src/server/index.ts`, run `npm run validate`, then revert.
+3. **Event branch:** delete `maintainers/` (`git rm -r maintainers`) so agents cannot find it, and hand
+   teams the resulting branch.
+4. **Pre-event day:** on each laptop confirm Node >= 22.18, that `/hackathon` appears in both tools (Copilot
+   needs `chat.promptFiles` enabled), and that framework installs have network access or are pre-installed.
+5. **During:** keep time against the timeline in `HACKATHON.md`; collect each team's
+   `.hackathon/session.json` and final branch.
 
 ## Reset
-`npm run hackathon:reset` clears `.hackathon/`. To restore the starter code: `git restore src tests && git clean -fd src tests`.
 
-## Known limitations of this repository
-- `package-lock.json` is not committed: it must be generated by the first `npm install` (it was authored without network access). Commit it afterwards.
-- Framework install commands marked `status: verify` in `frameworks/catalog.yaml` need a pre-event check; fallback is native tools only.
-- Claude Code / Copilot slash-command details change between releases; the fallbacks are documented in `HACKATHON.md`.
-- Docker is optional: `docker build -t sdv-hackathon .`.
+`rm -rf .hackathon/* && touch .hackathon/.gitkeep` clears the session. To restore the starter code:
+`git restore src tests && git clean -fd src tests`.
+
+## Known limitations
+
+- `package-lock.json` is not committed: generate it with the first `npm install` and commit it.
+- Framework install commands marked `status: verify` in `frameworks/catalog.yaml` need a pre-event check;
+  the fallback is always native tools only.
+- Slash-command details change between Claude Code and Copilot releases; fallbacks are in `HACKATHON.md`.

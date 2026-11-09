@@ -1,5 +1,5 @@
 // Team validation: acceptance conformance + lint + unit/acceptance tests + build.
-// Writes .hackathon/validation-report.json (used by npm run hackathon:results).
+// Writes .hackathon/validation-report.json.
 //   npm run validate            -> everything
 //   npm run validate -- --quick -> only scenario conformance (no npm needed, ~1s)
 import { spawnSync } from 'node:child_process';

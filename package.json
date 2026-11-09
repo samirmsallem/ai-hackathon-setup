@@ -19,11 +19,7 @@
     "format:check": "prettier --check .",
     "validate": "node scripts/validate.mjs",
     "demo": "node scripts/demo.mjs",
-    "smoke": "node scripts/smoke-test.mjs",
-    "hackathon:init": "node scripts/initialize-hackathon.mjs",
-    "hackathon:results": "node scripts/generate-results.mjs",
-    "hackathon:reset": "node scripts/reset.mjs",
-    "event:prepare": "node scripts/prepare-event.mjs"
+    "hackathon:init": "node scripts/initialize-hackathon.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",
