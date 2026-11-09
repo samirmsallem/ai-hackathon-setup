@@ -1,10 +1,12 @@
 # AGENTS.md - rules for every AI agent in this repository
 
 This repository is a minimal entry point for running an AI-agent-driven, time-boxed hackathon with
-**Claude Code** or **GitHub Copilot**. It ships no product, no agents, no skills and no tests. `/hackathon`
+**Claude Code** or **GitHub Copilot**. It ships no product, no agents, no skills and no tests; the only
+fixed brief is this event's own - a demonstrable prototype in the SDV Accelerator context. `/hackathon`
 asks the team to choose an engineering method, autonomy level, validation strategy and optional
-framework, writes `.hackathon/session.json`, and installs the chosen framework. `/reset` clears that
-session. See `HACKATHON.md` for the full protocol.
+framework, writes `.hackathon/session.json`, and installs the chosen framework. `/start` then reports
+what's installed and proposes one concrete next move toward that prototype. `/reset` clears the session.
+See `HACKATHON.md` for the full protocol.
 
 ## Commands
 
@@ -12,10 +14,11 @@ session. See `HACKATHON.md` for the full protocol.
 
 ## Hard rules
 
-1. `/hackathon` and `/reset` are the only workflow entry points. Don't add new commands, agents, skills
-   or a bundled task unless explicitly asked.
-2. `prompts/hackathon.md` and `prompts/reset.md` are the single source of truth; `.claude/` and `.github/`
-   stay thin wrappers. Edit the shared prompt, not the wrapper, for any behaviour change.
+1. `/hackathon`, `/start` and `/reset` are the only workflow entry points. Don't add new commands, agents,
+   skills or a bundled task unless explicitly asked.
+2. `prompts/hackathon.md`, `prompts/start.md` and `prompts/reset.md` are the single source of truth;
+   `.claude/` and `.github/` stay thin wrappers. Edit the shared prompt, not the wrapper, for any
+   behaviour change.
 3. `frameworks/catalog.yaml` is the only place framework install commands live.
 4. Ask before installing anything (framework installs, packages, a team branch).
 5. Keep answers short; surface blockers early.

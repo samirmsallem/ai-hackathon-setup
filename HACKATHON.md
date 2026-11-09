@@ -1,20 +1,24 @@
 # Hackathon entry point
 
-A minimal, reusable `/hackathon` command for running an AI-agent-driven, time-boxed hackathon with
-**Claude Code** or **GitHub Copilot**. It ships no product, no agents, no skills and no tests - teams
-bring their own task. All it does: explain the two commands, ask four configuration questions, write
-`.hackathon/session.json`, and install the chosen optional framework.
+A minimal, reusable set of commands for running an AI-agent-driven, time-boxed hackathon with
+**Claude Code** or **GitHub Copilot**. It ships no product, no agents, no skills and no tests - the only
+fixed brief is this event's own: build a **demonstrable prototype in the SDV (Software-Defined Vehicle)
+Accelerator context**. `/hackathon` asks four configuration questions and installs the chosen optional
+framework, `/start` then reports what's now available and proposes one concrete first move toward that
+prototype, and `/reset` clears the session so `/hackathon` can start over.
 
 ## Start
 
 | Tool | Command |
 | --- | --- |
-| Claude Code | `/hackathon` (run `claude` in the repo root) |
-| GitHub Copilot | `/hackathon` in Copilot Chat, agent mode. If it is not offered: *Chat: Run Prompt...* from the command palette, or attach `.github/prompts/hackathon.prompt.md` and say "Follow this prompt." |
+| Claude Code | `/hackathon` (run `claude` in the repo root), then `/start` once it's configured |
+| GitHub Copilot | `/hackathon` in Copilot Chat, agent mode, then `/start`. If a command is not offered: *Chat: Run Prompt...* from the command palette, or attach the matching file in `.github/prompts/` and say "Follow this prompt." |
 
-`/hackathon` is the only workflow command: it asks the four questions below, writes the session file and
-installs the chosen framework. `/reset` is a one-step utility that clears `.hackathon/` so `/hackathon`
-can start over. Both are thin wrappers around the shared protocols in `prompts/`.
+`/hackathon` is the main workflow command: it asks the four questions below, writes the session file and
+installs the chosen framework. `/start` is the follow-up - it asks nothing new, it just reports what's
+installed and proposes one concrete next move toward the SDV Accelerator prototype. `/reset` is a
+one-step utility that clears `.hackathon/` so `/hackathon` can start over. All three are thin wrappers
+around the shared protocols in `prompts/`.
 
 ## Your role
 
@@ -72,6 +76,13 @@ Built from `frameworks/catalog.yaml` (letters a-g). Everything is optional; **a*
 
 If an install fails for more than 10 minutes, fall back to **a** and say so.
 
+## /start
+
+Run after `/hackathon` (and after a restart/reload if a framework installed new slash commands). It asks
+nothing: it reports the active session, names what's installed and which framework added it, and proposes
+exactly one concrete first move toward this event's fixed brief - a demonstrable SDV Accelerator
+prototype. Its full protocol lives in `prompts/start.md`.
+
 ## Orchestrator protocol
 
 `/hackathon` follows these steps and never invents a bundled task.
@@ -89,12 +100,11 @@ If an install fails for more than 10 minutes, fall back to **a** and say so.
    --validation ... --framework ...`. Offer to create branch `team/<name>` if on the default branch, after
    asking.
 6. **Install the framework** if it is not **a**: show the command from the catalog, ask approval, run it,
-   verify its first command works. If it installed anything, list the new commands/skills/agents by name
-   and mention the tool may need a restart or reload before they show up.
+   verify its first command works. If it installed anything, mention the tool may need a restart or
+   reload before new slash commands, skills or agents show up.
 7. **Hand off:** state the deadline from `.hackathon/session.json`, remind the team which method/autonomy/
-   validation now governs the work, and that the task itself is theirs to bring. Then offer a concrete next
-   move built from what's installed (e.g. run a brainstorming/planning skill or command on the team's task,
-   or start native planning if framework **a**) and ask how they want to proceed.
+   validation now governs the work, and point them to `/start` for a concrete first move toward this
+   event's brief - a demonstrable SDV Accelerator prototype - instead of just stopping.
 
 ## Done
 

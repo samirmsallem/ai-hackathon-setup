@@ -1,9 +1,11 @@
 # Agentic hackathon entry point
 
 A small, reusable entry point for running an AI-agent-driven hackathon with **Claude Code** or
-**GitHub Copilot**. It ships no product, no agents, no skills and no tests - just one command that lets a
-team choose its engineering method, autonomy level, validation strategy and an optional framework, then
-sets up the session and installs what was picked. Bring your own task.
+**GitHub Copilot**. It ships no product, no agents, no skills and no tests - the fixed brief is this
+event's own: build a **demonstrable prototype in the SDV (Software-Defined Vehicle) Accelerator context**.
+`/hackathon` lets a team choose its engineering method, autonomy level, validation strategy and an
+optional framework, then sets up the session and installs what was picked; `/start` reports what's now
+available and proposes one concrete first move toward that prototype.
 
 ## Quick start
 
@@ -22,7 +24,8 @@ In Copilot, if `/hackathon` is not offered: *Chat: Run Prompt...* from the comma
 `.github/prompts/hackathon.prompt.md` and say "Follow this prompt."
 
 `/hackathon` asks four questions - method, autonomy level, validation strategy, framework - installs what
-you picked, and writes `.hackathon/session.json`. That's it; there is nothing to build here.
+you picked, and writes `.hackathon/session.json`. Once that's done, run `/start`: it asks nothing, just
+reports what's installed and proposes one concrete first move toward the SDV Accelerator prototype.
 
 ## How the configuration question works
 
@@ -55,3 +58,11 @@ Not sure? Answer `recommend` and get one suggested combination to confirm instea
   over.
 - **Approve installs and branches separately** - nothing gets installed or created without asking first.
 - **Start over anytime** - `/reset` clears the session so `/hackathon` asks again.
+
+## After setup: `/start`
+
+Once `/hackathon` has configured the session (and installed a framework, if chosen), run `/start`. It
+asks nothing new - it reports the active session, names what the framework actually added (skills,
+commands, agents), and proposes one concrete first move toward the SDV Accelerator prototype. If a
+framework installed new slash commands, you may need to restart or reload your tool first; `/start` will
+say so if that's pending.
