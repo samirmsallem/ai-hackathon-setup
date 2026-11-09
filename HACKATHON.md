@@ -89,10 +89,12 @@ If an install fails for more than 10 minutes, fall back to **a** and say so.
    --validation ... --framework ...`. Offer to create branch `team/<name>` if on the default branch, after
    asking.
 6. **Install the framework** if it is not **a**: show the command from the catalog, ask approval, run it,
-   verify its first command works.
+   verify its first command works. If it installed anything, list the new commands/skills/agents by name
+   and mention the tool may need a restart or reload before they show up.
 7. **Hand off:** state the deadline from `.hackathon/session.json`, remind the team which method/autonomy/
-   validation now governs the work, and that the task itself is theirs to bring - this repository stops
-   here.
+   validation now governs the work, and that the task itself is theirs to bring. Then offer a concrete next
+   move built from what's installed (e.g. run a brainstorming/planning skill or command on the team's task,
+   or start native planning if framework **a**) and ask how they want to proceed.
 
 ## Done
 

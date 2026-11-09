@@ -56,7 +56,21 @@ Only if the choice is not **a**: show the command at your install key in `framew
 for approval, run it, then verify its first command works. After 10 minutes of failure, fall back to **a**
 and say so.
 
+If it installed anything (new slash commands, skills, or agents), list what's now available by name - in
+one short line each, not the whole catalog summary again. Mention that your tool may need a **restart or
+reload** (new terminal/session in Claude Code, reload window in VS Code/Copilot) before those new slash
+commands show up; say so plainly rather than assuming they're live immediately.
+
 ## Step 7 - Hand off
 
-State the deadline from `.hackathon/session.json`, summarize the chosen method/autonomy/validation in one
-line each, and stop. There is no bundled task to start building - that is the team's own brief.
+State the deadline from `.hackathon/session.json` and summarize the chosen method/autonomy/validation in
+one line each. There is no bundled task to start building - that is the team's own brief - so instead of
+just stopping, offer concrete next moves built from what's now installed, for example:
+
+- If the framework ships a brainstorming/planning skill or command, offer to run it now on the team's task
+  (ask what the task is if you don't know yet).
+- If it ships a spec/plan-writing command, offer to start there instead.
+- If nothing was installed (framework **a**), offer to start planning directly with your tool's native
+  capabilities, following the chosen method from `HACKATHON.md`.
+
+Ask the team how they want to proceed; don't pick for them.
