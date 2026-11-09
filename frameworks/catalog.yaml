@@ -1,69 +1,66 @@
-# Framework catalog. The /hackathon command derives Question 2 from this file.
-# status: "confirmed" = install command was checked against upstream docs when this repo was authored.
-#         "verify"    = command is from the author's knowledge; the facilitator MUST run the pre-event check
-#                       (see frameworks/README.md). If it fails at the event, the team falls back to native-tools-only.
-# Field "suitableFor" and "risk" (low | low-medium | medium | high) are shown to the team in Question 2.
-# Field "fit" lists methods (ids from methods/) that combine well. "timeCost" = typical setup minutes.
+# Framework catalog. /hackathon builds Question 4 from this file, in this order (a-g).
+# status: confirmed = install command checked against upstream docs. verify = unchecked, fall back to
+#         native-tools-only if it fails. risk: low | low-medium | medium | high. timeCost: setup minutes.
+# fit: methods that combine well (ids from HACKATHON.md).
 frameworks:
   - id: native-tools-only
-    name: Native tool capabilities only
-    summary: Only Claude Code or GitHub Copilot built-ins plus this repository's own commands, agents and skills.
-    tools: [claude-code, github-copilot]
+    letter: a
+    name: Native Claude Code / Copilot
+    summary: Only the built-ins of your tool plus this repository's own /hackathon command, agents and skills.
     install: { claude-code: none, github-copilot: none }
     status: confirmed
     timeCost: 0
-    fit: [minimalist, skills-based, multi-agent, spec-driven, test-driven, context-engineered, hybrid, custom]
-    suitableFor: "Minimalist, Multi-Agent"
+    fit: [minimalist, skills-based, multi-agent, spec-driven, hybrid, custom]
+    suitableFor: "Minimalist, Multi-agent"
     risk: low
     needs: []
-    doc: frameworks/native-tools-only.md
+
   - id: matt-pocock-skills
+    letter: b
     name: Matt Pocock Skills
     summary: Small composable engineering skills (grilling for alignment, TDD, diagnose, triage, to-prd, to-issues).
-    tools: [claude-code, github-copilot]
     install:
-      claude-code: "npx skills@latest add mattpocock/skills  (then run /setup-matt-pocock-skills)"
-      github-copilot: "VS Code: 'Chat: Install Plugin From Source' -> https://github.com/mattpocock/skills  (or npx skills@latest add mattpocock/skills -a <agent>)"
+      claude-code: "npx skills@latest add mattpocock/skills   (then /setup-matt-pocock-skills)"
+      github-copilot: "VS Code: 'Chat: Install Plugin From Source' -> https://github.com/mattpocock/skills"
     status: confirmed
     timeCost: 5
     fit: [skills-based, hybrid]
     suitableFor: "Skills-based, Hybrid"
     risk: low
     needs: [node]
-    doc: frameworks/matt-pocock-skills.md
+
   - id: superpowers
+    letter: c
     name: Superpowers
     summary: Opinionated workflow of brainstorming, planning, subagent-driven development, TDD and review skills.
-    tools: [claude-code, github-copilot]
     install:
-      claude-code: "/plugin marketplace add obra/superpowers-marketplace  then  /plugin install superpowers@superpowers-marketplace"
-      github-copilot: "Follow the obra/superpowers README for Copilot support; if unavailable use native-tools-only"
+      claude-code: "/plugin marketplace add obra/superpowers-marketplace   then   /plugin install superpowers@superpowers-marketplace"
+      github-copilot: "See the obra/superpowers README for Copilot support; if unavailable use native-tools-only"
     status: verify
     timeCost: 5
-    fit: [test-driven, multi-agent, hybrid]
+    fit: [multi-agent, hybrid, custom]
     suitableFor: "TDD, planning, review"
     risk: medium
     needs: [git]
-    doc: frameworks/superpowers.md
-  - id: bmad-method
-    name: BMAD Method
-    summary: Agile-persona workflow (analyst, PM, architect, scrum master, dev, QA) with PRD and story files.
-    tools: [claude-code, github-copilot]
+
+  - id: openspec
+    letter: d
+    name: OpenSpec
+    summary: Lightweight spec-driven change proposals (propose, apply, archive) stored in the repository.
     install:
-      claude-code: "npx bmad-method install"
-      github-copilot: "npx bmad-method install  (select GitHub Copilot as IDE)"
+      claude-code: "npm install -g @fission-ai/openspec@latest && openspec init"
+      github-copilot: "npm install -g @fission-ai/openspec@latest && openspec init   (select GitHub Copilot)"
     status: verify
-    timeCost: 10
-    fit: [multi-agent, hybrid]
-    suitableFor: "Full role-based delivery methodology"
-    risk: high
+    timeCost: 5
+    fit: [spec-driven, hybrid]
+    suitableFor: "Lightweight spec-driven"
+    risk: low-medium
     needs: [node]
-    doc: frameworks/bmad-method.md
-    warning: Heavy for a 120-minute challenge. Only choose it with the reduced path described in the doc.
+
   - id: github-spec-kit
+    letter: e
     name: GitHub Spec Kit
     summary: Spec-driven development with constitution, specify, plan, tasks and implement commands.
-    tools: [claude-code, github-copilot]
     install:
       claude-code: "uvx --from git+https://github.com/github/spec-kit.git specify init --here --ai claude"
       github-copilot: "uvx --from git+https://github.com/github/spec-kit.git specify init --here --ai copilot"
@@ -73,45 +70,35 @@ frameworks:
     suitableFor: "Structured spec-driven development (SDD)"
     risk: medium
     needs: [uv, python]
-    doc: frameworks/github-spec-kit.md
-  - id: openspec
-    name: OpenSpec
-    summary: Lightweight spec-driven change proposals (propose, apply, archive) stored in the repo.
-    tools: [claude-code, github-copilot]
-    install:
-      claude-code: "npm install -g @fission-ai/openspec@latest && openspec init"
-      github-copilot: "npm install -g @fission-ai/openspec@latest && openspec init  (select GitHub Copilot)"
-    status: verify
-    timeCost: 5
-    fit: [spec-driven, hybrid]
-    suitableFor: "Lightweight spec-driven"
-    risk: low-medium
-    needs: [node]
-    doc: frameworks/openspec.md
+
   - id: gsd
+    letter: f
     name: GSD (Get Shit Done)
     summary: Context-engineering workflow that splits work into phases with fresh-context executors and atomic commits.
-    tools: [claude-code, github-copilot]
     install:
       claude-code: "npx get-shit-done-cc@latest"
-      github-copilot: "npx get-shit-done-cc@latest  (select Copilot if offered, else use native-tools-only)"
+      github-copilot: "npx get-shit-done-cc@latest   (select Copilot if offered, else use native-tools-only)"
     status: verify
     timeCost: 5
-    fit: [context-engineered, hybrid]
+    fit: [custom, hybrid, minimalist]
     suitableFor: "Context engineering"
     risk: medium
     needs: [node]
-    doc: frameworks/gsd.md
-    note: Check upstream for the currently maintained package name; use the maintained equivalent if renamed.
-  - id: custom
-    name: Custom or another framework
-    summary: The team names its own framework; the agent checks compatibility with the chosen tool before installing.
-    tools: [claude-code, github-copilot]
-    install: { claude-code: "team provides", github-copilot: "team provides" }
+    note: Check upstream for the current package name; use the maintained equivalent if renamed.
+
+  - id: bmad-method
+    letter: g
+    name: BMAD Method
+    summary: Agile-persona workflow (analyst, PM, architect, scrum master, dev, QA) with PRD and story files.
+    install:
+      claude-code: "npx bmad-method install"
+      github-copilot: "npx bmad-method install   (select GitHub Copilot as IDE)"
     status: verify
     timeCost: 10
-    fit: [custom, hybrid]
-    suitableFor: "Any method the team defines"
-    risk: medium
-    needs: []
-    doc: frameworks/compatibility.md
+    fit: [multi-agent, hybrid]
+    suitableFor: "Full role-based delivery methodology"
+    risk: high
+    needs: [node]
+    warning: >
+      Heavy for 120 minutes. Only pick it with the reduced path: skip analyst and PM, start at architect,
+      write one PRD and at most three stories, and hard-stop the setup after 15 minutes.
