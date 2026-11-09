@@ -2,6 +2,7 @@
 # status: "confirmed" = install command was checked against upstream docs when this repo was authored.
 #         "verify"    = command is from the author's knowledge; the facilitator MUST run the pre-event check
 #                       (see frameworks/README.md). If it fails at the event, the team falls back to native-tools-only.
+# Field "suitableFor" and "risk" (low | low-medium | medium | high) are shown to the team in Question 2.
 # Field "fit" lists methods (ids from methods/) that combine well. "timeCost" = typical setup minutes.
 frameworks:
   - id: native-tools-only
@@ -12,6 +13,8 @@ frameworks:
     status: confirmed
     timeCost: 0
     fit: [minimalist, skills-based, multi-agent, spec-driven, test-driven, context-engineered, hybrid, custom]
+    suitableFor: "Minimalist, Multi-Agent"
+    risk: low
     needs: []
     doc: frameworks/native-tools-only.md
   - id: matt-pocock-skills
@@ -23,7 +26,9 @@ frameworks:
       github-copilot: "VS Code: 'Chat: Install Plugin From Source' -> https://github.com/mattpocock/skills  (or npx skills@latest add mattpocock/skills -a <agent>)"
     status: confirmed
     timeCost: 5
-    fit: [skills-based, test-driven, context-engineered, hybrid, minimalist]
+    fit: [skills-based, hybrid]
+    suitableFor: "Skills-based, Hybrid"
+    risk: low
     needs: [node]
     doc: frameworks/matt-pocock-skills.md
   - id: superpowers
@@ -35,7 +40,9 @@ frameworks:
       github-copilot: "Follow the obra/superpowers README for Copilot support; if unavailable use native-tools-only"
     status: verify
     timeCost: 5
-    fit: [multi-agent, test-driven, skills-based, hybrid]
+    fit: [test-driven, multi-agent, hybrid]
+    suitableFor: "TDD, planning, review"
+    risk: medium
     needs: [git]
     doc: frameworks/superpowers.md
   - id: bmad-method
@@ -47,7 +54,9 @@ frameworks:
       github-copilot: "npx bmad-method install  (select GitHub Copilot as IDE)"
     status: verify
     timeCost: 10
-    fit: [multi-agent, spec-driven, hybrid]
+    fit: [multi-agent, hybrid]
+    suitableFor: "Full role-based delivery methodology"
+    risk: high
     needs: [node]
     doc: frameworks/bmad-method.md
     warning: Heavy for a 120-minute challenge. Only choose it with the reduced path described in the doc.
@@ -60,7 +69,9 @@ frameworks:
       github-copilot: "uvx --from git+https://github.com/github/spec-kit.git specify init --here --ai copilot"
     status: verify
     timeCost: 8
-    fit: [spec-driven, hybrid, context-engineered]
+    fit: [spec-driven, hybrid]
+    suitableFor: "Structured spec-driven development (SDD)"
+    risk: medium
     needs: [uv, python]
     doc: frameworks/github-spec-kit.md
   - id: openspec
@@ -72,7 +83,9 @@ frameworks:
       github-copilot: "npm install -g @fission-ai/openspec@latest && openspec init  (select GitHub Copilot)"
     status: verify
     timeCost: 5
-    fit: [spec-driven, hybrid, context-engineered, minimalist]
+    fit: [spec-driven, hybrid]
+    suitableFor: "Lightweight spec-driven"
+    risk: low-medium
     needs: [node]
     doc: frameworks/openspec.md
   - id: gsd
@@ -84,7 +97,9 @@ frameworks:
       github-copilot: "npx get-shit-done-cc@latest  (select Copilot if offered, else use native-tools-only)"
     status: verify
     timeCost: 5
-    fit: [context-engineered, multi-agent, hybrid]
+    fit: [context-engineered, hybrid]
+    suitableFor: "Context engineering"
+    risk: medium
     needs: [node]
     doc: frameworks/gsd.md
     note: Check upstream for the currently maintained package name; use the maintained equivalent if renamed.
@@ -96,5 +111,7 @@ frameworks:
     status: verify
     timeCost: 10
     fit: [custom, hybrid]
+    suitableFor: "Any method the team defines"
+    risk: medium
     needs: []
     doc: frameworks/compatibility.md

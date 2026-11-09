@@ -1,5 +1,17 @@
 # Selection guide
 
+| Choice | Suitable for | Risk in the hackathon |
+| --- | --- | --- |
+| Native Claude Code / Copilot | Minimalist, Multi-agent | Low |
+| Matt Pocock Skills | Skills-based, Hybrid | Low |
+| Superpowers | TDD, planning, review | Medium |
+| OpenSpec | Lightweight spec-driven | Low to medium |
+| GitHub Spec Kit | Structured spec-driven development | Medium |
+| GSD | Context engineering | Medium |
+| BMAD Method | Full role-based delivery methodology | High |
+
+Other combinations are allowed but flagged "unusual combination". The table is mirrored in `catalog.yaml` (`suitableFor`, `risk`).
+
 | If your team wants to learn about ... | Consider |
 | --- | --- |
 | Baseline without tooling | Native only + Minimalist |
