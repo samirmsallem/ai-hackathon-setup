@@ -24,37 +24,33 @@ In Copilot, if `/hackathon` is not offered: *Chat: Run Prompt...* from the comma
 `/hackathon` asks four questions - method, autonomy level, validation strategy, framework - installs what
 you picked, and writes `.hackathon/session.json`. That's it; there is nothing to build here.
 
-## What is in the repository
+## How the configuration question works
 
-| Path | Purpose |
-| --- | --- |
-| `HACKATHON.md` | The four questions, their options and the orchestrator protocol |
-| `AGENTS.md` | Hard rules for every agent working in this repository |
-| `frameworks/catalog.yaml` | The seven optional frameworks and their install commands |
-| `prompts/` | Shared `/hackathon` and `/reset` protocols, used by both tools |
-| `.claude/`, `.github/` | Thin `/hackathon` and `/reset` command wrappers |
-| `scripts/initialize-hackathon.mjs` | Writes `.hackathon/session.json` |
-| `.hackathon/` | Your session file (git-ignored) |
+**Mechanism:** in Claude Code, all four questions are asked in **one `AskUserQuestion` call** - a
+structured dialog where you click/select an option per question (or type a free-text "Other" answer for
+anything not shown). In GitHub Copilot, which has no such widget, the same four questions arrive as
+**one plain-text message**; you reply with a single combined line, e.g. `Method: 3 Autonomy: B
+Validation: 3 Framework: a`. Either way it's one round trip, not four separate prompts. Full option
+tables and defaults live in `HACKATHON.md`.
 
-## Commands
+**What's being asked, and how to choose:**
 
-`npm run hackathon:init` runs the same script `/hackathon` calls, directly, with flags:
+| Question | Options | Pick based on |
+| --- | --- | --- |
+| **Q1 Method** | Minimalist, Skills-based, Multi-agent, Spec-driven, Hybrid, Custom | How much process your team wants before code: none (Minimalist), a plan+task list (Spec-driven), or role separation (Multi-agent) |
+| **Q2 Autonomy** | Guided, Supervised (recommended), Maximum | How much you want to approve as you go: every step, checkpoints only, or hands-off with periodic status |
+| **Q3 Validation** | Tests after, TDD, Continuous review, Independent reviewer | How rigorously you want work checked: after the fact, test-first, continuously, or by a separate reviewer |
+| **Q4 Framework** | Native tools (a), Matt Pocock Skills (b), Superpowers (c), OpenSpec (d), GitHub Spec Kit (e), GSD (f), BMAD (g) | Whether to install extra tooling at all, and if so, which one fits the method you picked in Q1 (`a` needs 0 min setup; `g` is high-risk for a short session) |
 
-```bash
-npm run hackathon:init -- --tool claude-code --method multi-agent --autonomy supervised \
-  --validation reviewer --framework native-tools-only
-```
+**What the team controls:**
 
-No other tooling is bundled - no build, lint, or test scripts, since there is no shipped code.
-
-## Reset
-
-Run `/reset` in Claude Code or Copilot, or by hand: `rm -rf .hackathon/* && touch .hackathon/.gitkeep`.
-It clears the session so `/hackathon` starts fresh.
-
-## Known limitations
-
-- Framework install commands marked `status: verify` in `frameworks/catalog.yaml` need a pre-event check;
-  the fallback is always native tools only (**a**).
-- Slash-command details change between Claude Code and Copilot releases; `HACKATHON.md` and each wrapper
-  describe the current fallback.
+- **Partial or shorthand answers** - give only some answers and the rest fall back to the defaults in
+  `HACKATHON.md`, or answer `recommend` to get one proposed combination with a one-line reason and just
+  confirm it.
+- **One confirmation before anything changes** - the resulting setup is shown back to you in full before
+  the session is created or anything is installed.
+- **Resume vs. reconfigure** - if `.hackathon/session.json` already exists, you're asked whether to keep
+  it or start over; it's never silently overwritten.
+- **Branch creation and framework installs** - both are proposed, not assumed; you approve the branch
+  name and the install command (or skip the framework entirely with `a`).
+- **Re-asking later** - running `/reset` clears the session so `/hackathon` asks all four questions again.
