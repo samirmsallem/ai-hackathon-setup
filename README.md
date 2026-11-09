@@ -31,12 +31,18 @@ one-line reply in Copilot. Here's what you're deciding:
 
 - **Method** - how much process you want before code gets written: none, a plan first, or split roles
   (e.g. one agent plans, another builds, another reviews).
-- **Autonomy** - how closely you want to supervise: approve every step, approve at checkpoints
-  (recommended), or let it run and just check in on status.
+- **Autonomy** - how closely you want to supervise: approve every step, approve at checkpoints, or let it
+  run and just check in on status.
 - **Validation** - how work gets checked: after it's done, test-first, continuously as you go, or by a
   separate reviewer.
-- **Framework** - whether to install extra tooling to support your method, or skip it and use the tool as
-  is.
+- **Framework** - extra tooling to support your method; pick the one that fits rather than skipping it.
+
+| Step | Your options |
+| --- | --- |
+| Method | Minimalist, Skills-based, Multi-agent, Spec-driven, Hybrid, Custom |
+| Autonomy | Guided, Supervised, Maximum |
+| Validation | Tests after implementation, Test-driven development, Continuous review, Independent reviewer |
+| Framework | Native tools (none to install), [Matt Pocock Skills](https://github.com/mattpocock/skills), [Superpowers](https://github.com/obra/superpowers-marketplace), [OpenSpec](https://www.npmjs.com/package/@fission-ai/openspec), [GitHub Spec Kit](https://github.com/github/spec-kit), [GSD](https://www.npmjs.com/package/get-shit-done-cc), [BMAD Method](https://www.npmjs.com/package/bmad-method) |
 
 Not sure? Answer `recommend` and get one suggested combination to confirm instead of four decisions.
 
