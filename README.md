@@ -34,7 +34,8 @@ framework in **one** answer, installs what you picked, and starts building. Your
 | `challenge/` | Mission, requirements, acceptance criteria, constraints, domain, definition of done |
 | `frameworks/catalog.yaml` | The seven optional frameworks and their install commands |
 | `skills/` | Six reusable skills (plan, generate tests, implement, review, validate, demo) |
-| `.claude/`, `.github/` | The `/hackathon` entrypoint and four agents per tool |
+| `prompts/` | Shared `/hackathon` and `/reset` protocols, used by both tools |
+| `.claude/`, `.github/` | Thin `/hackathon` and `/reset` wrappers, plus four agents per tool |
 | `data/`, `reference/` | 12 telemetry scenarios, rules, DTC catalog, expected results (immutable) |
 | `src/`, `tests/` | Starter skeleton (stub core, stub API, placeholder UI), fixed acceptance tests |
 | `.hackathon/` | Your session file (git-ignored) |
@@ -72,7 +73,9 @@ rules live in `reference/validation-rules.json`, scenario expectations in `refer
 
 ## Reset
 
-`rm -rf .hackathon/* && touch .hackathon/.gitkeep` clears the session. To restore the starter code:
+Run `/reset` in Claude Code or Copilot: it clears `.hackathon/` safely, and - only after an explicit
+confirmation - can also discard `src/`/`tests/` changes and restore the starter skeleton. The same two
+steps by hand: `rm -rf .hackathon/* && touch .hackathon/.gitkeep`, then
 `git restore src tests && git clean -fd src tests`.
 
 ## Known limitations

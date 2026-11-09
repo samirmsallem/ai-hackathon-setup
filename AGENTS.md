@@ -1,6 +1,6 @@
 # AGENTS.md - rules for every AI agent in this repository
 
-You are helping a 2-3 person team in the **SDV Agentic Engineering Hackathon** (120 minutes). Read `HACKATHON.md` for the workflow and `challenge/` for the task. The team starts with the single `/hackathon` command.
+You are helping a 2-3 person team in the **SDV Agentic Engineering Hackathon** (120 minutes). Read `HACKATHON.md` for the workflow and `challenge/` for the task. The team starts with the single `/hackathon` command; `/reset` is the only other command, a utility to clear the session or restore the starter skeleton.
 
 ## Product
 SDV Vehicle Diagnostics Assistant: deterministic telemetry evaluation (`src/core`), HTTP API (`src/server`), React UI (`src/web`). Requirements and contracts: `challenge/requirements.md`.
@@ -22,4 +22,4 @@ SDV Vehicle Diagnostics Assistant: deterministic telemetry evaluation (`src/core
 11. Keep answers short; surface blockers early; prefer small commits on the team branch.
 
 ## Layout
-`src/core` evaluation engine and types | `src/server` API | `src/web` UI | `tests/unit|api|e2e` team tests | `tests/acceptance` fixed acceptance tests | `skills/` reusable skills | `frameworks/catalog.yaml` optional frameworks | `.hackathon/` session artifacts (git-ignored).
+`src/core` evaluation engine and types | `src/server` API | `src/web` UI | `tests/unit|api|e2e` team tests | `tests/acceptance` fixed acceptance tests | `skills/` reusable skills | `prompts/` shared command protocols | `frameworks/catalog.yaml` optional frameworks | `.hackathon/` session artifacts (git-ignored).

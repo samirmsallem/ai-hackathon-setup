@@ -13,8 +13,11 @@ validated, extendable prototype most effectively?
 | Claude Code | `/hackathon` (run `claude` in the repo root) |
 | GitHub Copilot | `/hackathon` in Copilot Chat, agent mode. If it is not offered: *Chat: Run Prompt...* from the command palette, or attach `.github/prompts/hackathon.prompt.md` and say "Follow this prompt." |
 
-`/hackathon` is the only command. It explains the task, asks four questions, sets up the workflow and
-starts the implementation. Everything below is what it uses.
+`/hackathon` is the only workflow command. It explains the task, asks four questions, sets up the
+workflow and starts the implementation. `/reset` is a small utility outside the workflow: it clears the
+session or, with explicit confirmation, restores the starter skeleton. Both commands are thin wrappers
+around the shared protocols in `prompts/`, so Claude Code and Copilot don't duplicate the instructions.
+Everything below is what `/hackathon` uses.
 
 ## Your role
 
