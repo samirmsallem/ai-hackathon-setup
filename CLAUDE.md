@@ -3,11 +3,11 @@
 @AGENTS.md
 
 ## Claude Code specifics
-- `/hackathon` (`.claude/commands/hackathon.md`) is the only workflow command; `/reset`
-  (`.claude/commands/reset.md`) clears the session or restores the starter skeleton. Both are thin
-  wrappers around the shared protocols in `prompts/`, so Claude Code and Copilot don't duplicate the
-  instructions - edit `prompts/*.md`, not the wrappers, for any behaviour change.
-- Subagents live in `.claude/agents/` (architect, developer, tester, reviewer). Use them for the Multi-agent method; give each a clear file ownership.
-- Skills are in `skills/` and mirrored to `.claude/skills/` by `scripts/initialize-hackathon.mjs`.
-- Use plan mode for the planning phase when autonomy is Guided or Supervised.
-- Do not start coding before `.hackathon/session.json` exists.
+
+- `/hackathon` (`.claude/commands/hackathon.md`) asks method/autonomy/validation/framework with a single
+  `AskUserQuestion` call (four questions), then creates the session and installs the chosen framework.
+  `/reset` (`.claude/commands/reset.md`) clears the session.
+- Both are thin wrappers around `prompts/*.md` - edit the shared prompt, not the wrapper, for any
+  behaviour change.
+- No subagents or skills ship by default. Only add them if the team's chosen method/framework needs them,
+  and only after asking.

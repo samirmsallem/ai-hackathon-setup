@@ -1,7 +1,6 @@
 // Creates .hackathon/session.json. Called by /hackathon after the team has chosen its configuration.
 //   node scripts/initialize-hackathon.mjs --tool claude-code --method spec-driven \
-//     --autonomy supervised --validation continuous --framework openspec \
-//     [--agents architect,developer,reviewer] [--skills plan-feature,implement-feature]
+//     --autonomy supervised --validation continuous --framework openspec
 // Without flags in a terminal it asks interactively.
 import fs from 'node:fs';
 import readline from 'node:readline/promises';
@@ -34,15 +33,11 @@ const now = new Date();
 const session = {
   tool: args.tool, method: args.method, framework: args.framework,
   autonomy: args.autonomy, validation: args.validation,
-  agents: (args.agents ?? '').split(',').filter(Boolean),
-  skills: (args.skills ?? '').split(',').filter(Boolean),
   startedAt: now.toISOString(),
   deadline: new Date(now.getTime() + 120 * 60_000).toISOString(),
 };
 fs.mkdirSync(p('.hackathon'), { recursive: true });
 fs.writeFileSync(p('.hackathon/session.json'), JSON.stringify(session, null, 2) + '\n');
-// Mirror repository skills where each tool discovers them (these copies are git-ignored).
-for (const dest of ['.claude/skills', '.github/skills']) fs.cpSync(p('skills'), p(dest), { recursive: true });
 console.log(
   `Session created: ${session.method} / ${session.autonomy} / ${session.validation} / ${session.framework}\n` +
     `Deadline: ${session.deadline}\nFile: .hackathon/session.json`,
