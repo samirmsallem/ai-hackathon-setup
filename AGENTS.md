@@ -20,7 +20,7 @@ See `HACKATHON.md` for the full protocol.
    `.claude/` and `.github/` stay thin wrappers. Edit the shared prompt, not the wrapper, for any
    behaviour change.
 3. `frameworks/catalog.yaml` is the only place framework install commands live.
-4. Ask before installing anything (framework installs, packages, a team branch).
+4. Ask before installing anything (framework installs, packages).
 5. Keep answers short; surface blockers early.
 
 ## Layout

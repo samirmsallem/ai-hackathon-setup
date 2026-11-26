@@ -8,7 +8,7 @@ in this repository, and it sets up a workflow only - there is no bundled task.
 
 - Tool id: `github-copilot`
 - Catalog install key: `install.github-copilot`
-- Extra input: ${input:arguments:Optional: "recommend", or a team name for the branch}
+- Extra input: ${input:arguments:Optional: "recommend"}
 - Also read `.github/copilot-instructions.md` as part of step 1
 - Copilot has no structured multi-question UI, so ask the Step 3 configuration as **one plain-text
   message** covering all four questions (method 1-6, autonomy A-C, validation 1-4, framework a-g), and

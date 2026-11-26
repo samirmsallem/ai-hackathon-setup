@@ -7,7 +7,7 @@ repository, and it sets up a workflow only - there is no bundled task.
 
 - Tool id: `claude-code`
 - Catalog install key: `install.claude-code`
-- Extra arguments: $ARGUMENTS (e.g. `recommend`, or a team name for the branch)
+- Extra arguments: $ARGUMENTS (e.g. `recommend`)
 - Ask the Step 3 configuration with **one `AskUserQuestion` call containing all four questions**
   (method, autonomy, validation, framework). `AskUserQuestion` allows at most 4 options per question
   plus the built-in "Other" free-text choice, so:

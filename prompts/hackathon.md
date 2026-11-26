@@ -47,8 +47,7 @@ node scripts/initialize-hackathon.mjs --tool <your tool id> \
   --framework <id from the catalog>
 ```
 
-This writes `.hackathon/session.json`. If the repository is on its default branch, offer to create
-`team/<name>` first (ask for the name).
+This writes `.hackathon/session.json`.
 
 ## Step 6 - Install the framework
 
@@ -63,7 +62,12 @@ say so plainly rather than assuming they're live immediately.
 ## Step 7 - Hand off
 
 State the deadline from `.hackathon/session.json` and summarize the chosen method/autonomy/validation in
-one line each. There is no bundled task to start building beyond this hackathon's own brief - a
-demonstrable prototype in the SDV Accelerator context - so point the team to `/start`: it reports what's
-now installed and proposes one concrete first move toward that prototype, without asking anything new.
-Offer to run `/start` yourself now, or tell the team to run it after a restart/reload if one is pending.
+one line each, with a one-line note on what each means for how the team should work right now (who
+proposes the first move, when you'll stop to check in, what "done" requires before moving on). There is
+no bundled task beyond this hackathon's own brief - a demonstrable prototype in the SDV Accelerator
+context.
+
+If a restart or reload is pending from Step 6, say so and tell the team to run `/start` themselves once
+it's done - don't run it yet. Otherwise, immediately continue into `/start` yourself, in the same
+turn - don't ask first and don't just point the team to it. `/start` reports what's installed and
+proposes one concrete first move toward the prototype, then asks the team to confirm it.

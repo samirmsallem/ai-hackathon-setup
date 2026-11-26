@@ -24,8 +24,9 @@ In Copilot, if `/hackathon` is not offered: *Chat: Run Prompt...* from the comma
 `.github/prompts/hackathon.prompt.md` and say "Follow this prompt."
 
 `/hackathon` asks four questions - method, autonomy level, validation strategy, framework - installs what
-you picked, and writes `.hackathon/session.json`. Once that's done, run `/start`: it asks nothing, just
-reports what's installed and proposes one concrete first move toward the SDV Accelerator prototype.
+you picked, writes `.hackathon/session.json`, and then runs `/start` itself: it reports what's installed
+and proposes one concrete first move toward the SDV Accelerator prototype. If a framework install needs a
+restart or reload first, `/hackathon` says so instead and you run `/start` yourself once that's done.
 
 ## How the configuration question works
 
@@ -56,13 +57,15 @@ Not sure? Answer `recommend` and get one suggested combination to confirm instea
   created or anything is installed.
 - **Keep an existing session** - if one is already running, you choose to resume it instead of starting
   over.
-- **Approve installs and branches separately** - nothing gets installed or created without asking first.
+- **Approve installs separately** - nothing gets installed without asking first.
 - **Start over anytime** - `/reset` clears the session so `/hackathon` asks again.
 
 ## After setup: `/start`
 
-Once `/hackathon` has configured the session (and installed a framework, if chosen), run `/start`. It
-asks nothing new - it reports the active session, names what the framework actually added (skills,
-commands, agents), and proposes one concrete first move toward the SDV Accelerator prototype. If a
-framework installed new slash commands, you may need to restart or reload your tool first; `/start` will
-say so if that's pending.
+Once `/hackathon` has configured the session (and installed a framework, if chosen), it runs `/start`
+itself in the same turn. It asks nothing new - it reports the active session, names what the framework
+actually added (skills, commands, agents), and proposes one concrete first move toward the SDV
+Accelerator prototype. If a framework installed new slash commands, a restart or reload of your tool may
+be needed first; `/hackathon` says so and leaves `/start` for you to run afterwards instead of running it
+itself. You can also run `/start` on its own at any time - after a restart, or just to see the proposal
+again.

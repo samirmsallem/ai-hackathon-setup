@@ -97,14 +97,15 @@ prototype. Its full protocol lives in `prompts/start.md`.
 4. **Show the resulting setup** - method, autonomy, validation, framework, and a one-line note on what
    each implies - and ask for one confirmation.
 5. **Create the session:** `node scripts/initialize-hackathon.mjs --tool ... --method ... --autonomy ...
-   --validation ... --framework ...`. Offer to create branch `team/<name>` if on the default branch, after
-   asking.
+   --validation ... --framework ...`.
 6. **Install the framework** if it is not **a**: show the command from the catalog, ask approval, run it,
    verify its first command works. If it installed anything, mention the tool may need a restart or
    reload before new slash commands, skills or agents show up.
 7. **Hand off:** state the deadline from `.hackathon/session.json`, remind the team which method/autonomy/
-   validation now governs the work, and point them to `/start` for a concrete first move toward this
-   event's brief - a demonstrable SDV Accelerator prototype - instead of just stopping.
+   validation now governs the work and what each means for working right now, then immediately continue
+   into `/start` yourself (unless a restart/reload from step 6 is still pending) so the team gets a
+   concrete first move toward this event's brief - a demonstrable SDV Accelerator prototype - without a
+   separate step.
 
 ## Done
 
