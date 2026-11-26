@@ -1,4 +1,4 @@
-# Agentic hackathon entry point
+# Agentic hackathon entry point /hackathon
 
 A small, reusable entry point for running an AI-agent-driven hackathon with **Claude Code** or
 **GitHub Copilot**. It ships no product, no agents, no skills and no tests - the fixed brief is this
